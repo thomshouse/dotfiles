@@ -1,0 +1,26 @@
+#!/bin/sh
+#
+# dot
+#
+# `dot` handles installation, updates, things like that. Run it periodically
+# to make sure you're on the latest and greatest.
+echo "› export $ZSH"
+export ZSH=$HOME/.dotfiles
+
+# Set macOS defaults
+echo "› Set defaults"
+$ZSH/macos/set-defaults.sh
+sudo -k
+
+# Install homebrew
+echo "› Install homebrew"
+$ZSH/homebrew/install.sh
+
+# Upgrade homebrew
+echo "› brew update"
+brew update
+sudo -k
+
+# Install software
+echo "› $ZSH/script/install"
+$ZSH/script/install

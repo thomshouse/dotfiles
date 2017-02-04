@@ -1,0 +1,28 @@
+# Local/private config goes in the include
+[include]
+  path = ~/.gitconfig.local
+[alias]
+  staged = diff --staged
+  ff = merge --ff-only
+  foff = "!git checkout $1 && git merge --ff-only HEAD@{1}"
+  pf = pull --ff-only
+  up = "!git remote update -p; git merge --ff-only @{u}"
+  pushu = "!git push -u origin `git symbolic-ref --short HEAD`"
+  hide = update-index --assume-unchanged
+  unhide = update-index --no-assume-unchanged
+  hidden = "!git ls-files -v | grep ^h | cut -c 3-"
+  purge = "!git branch --merged master | grep -E \"(issue-|feature-|release-)\" | cat"
+  purge-confirm = "!git branch --merged master | grep -E \"(issue-|feature-|release-)\" | xargs -n 1 git branch -d"
+  purge-remote = "!git branch -r --merged master | grep -E \"(issue-|feature-|release-)\" | cat"
+  tiny = log --pretty='format:%C(auto)%h  %C(auto,cyan)%<(12)%cr%Creset %C(auto,bold)%<(16)%cn%Creset %C(auto,dim)%<(50,trunc)%s %C(auto)%d'
+  tree = log --pretty='format:%C(auto)%h  %C(auto,cyan)%<(12)%cr%Creset %C(auto,bold)%<(16)%cn%Creset %C(auto,dim)%<(50,trunc)%s %C(auto)%d' --graph
+[core]
+  excludesfile = ~/.gitignore
+  editor = vim
+[color]
+  diff = auto
+  status = auto
+  branch = auto
+  ui = true
+[push]
+  default = simple

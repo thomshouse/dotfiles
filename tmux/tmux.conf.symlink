@@ -1,0 +1,10 @@
+# Reattach the whole session/window to user namespace
+set-option -g default-command "reattach-to-user-namespace -l zsh"
+
+# Use backtick as escape
+unbind C-b
+set -g prefix `
+bind-key ` send-prefix
+
+# Start windows numbering at 1
+set -g base-index 1
