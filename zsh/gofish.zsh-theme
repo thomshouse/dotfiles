@@ -10,49 +10,113 @@ _gofish_collapsed_wd() {
 }
 
 _gofish_collapsed_host() {
-	echo $(hostname | sed -E 's/^([Tt]he)[.-]//g' | sed 's/[.-].*//g')
+    echo $(hostname | sed -E 's/^([Tt]he)[.-]//g' | sed 's/[.-].*//g')
 }
 
 _gofish_git_info() {
   if [[ "$(git config --get oh-my-zsh.hide-status)" != "1" ]]; then
     ref=$(command git symbolic-ref HEAD 2> /dev/null) || \
     ref=$(command git rev-parse --short HEAD 2> /dev/null) || return
-    echo "$ZSH_THEME_GIT_PROMPT_PREFIX$(parse_git_dirty)${ref#refs/heads/}$ZSH_THEME_GIT_PROMPT_SUFFIX"
+    echo "$ZSH_THEME_GIT_PROMPT_PREFIX$(_gofish_parse_git_dirty)${ref#refs/heads/}$ZSH_THEME_GIT_PROMPT_SUFFIX"
   fi
 }
 
+_gofish_parse_git_dirty () {
+    local STATUS=''
+    local FLAGS
+    FLAGS=('--porcelain')
+    if [[ "$(command git config --get oh-my-zsh.hide-dirty)" != "1" ]]
+    then
+        if [[ $POST_1_7_2_GIT -gt 0 ]]
+        then
+            FLAGS+='--ignore-submodules=dirty'
+        fi
+        #if [[ "$DISABLE_UNTRACKED_FILES_DIRTY" = "true" ]]
+        #then
+        FLAGS+='--untracked-files=no'
+        #fi
+        STATUS=$(command git status ${FLAGS} 2> /dev/null | tail -n1)
+    fi
+    if [[ -n $STATUS ]]
+    then
+        echo "$ZSH_THEME_GIT_PROMPT_DIRTY"
+    else
+        if [[ -n $(git config oh-my-zsh.x-lazy-dirty-status) ]]
+        then
+            echo "$ZSH_THEME_GIT_PROMPT_DIRTY"
+        else
+            echo "$ZSH_THEME_GIT_PROMPT_CLEAN"
+        fi
+    fi
+    _gofish_parse_git_dirty_async &>/dev/null &
+}
+
+_gofish_parse_git_dirty_async () {
+    local STATUS=''
+    local FLAGS
+    local GITDIR=$(git rev-parse --git-dir)
+    if [[ -z $(git rev-parse --show-prefix) ]]
+    then
+        GITDIR=$(git rev-parse --show-toplevel)/$GITDIR
+    fi
+    FLAGS=('--porcelain')
+    if [[ "$(command git config --get oh-my-zsh.hide-dirty)" != "1" ]]
+    then
+        if [[ $POST_1_7_2_GIT -gt 0 ]]
+        then
+            FLAGS+='--ignore-submodules=dirty'
+        fi
+        if [[ "$DISABLE_UNTRACKED_FILES_DIRTY" = "true" ]]
+        then
+            FLAGS+='--untracked-files=no'
+        fi
+
+        ln -s $GITDIR/index $GITDIR/async-index
+        STATUS=$(GIT_INDEX_FILE=.git/async-index command git status ${FLAGS} 2> /dev/null | tail -n1)
+        rm $GITDIR/async-index
+    fi
+    if [[ -n $STATUS ]]
+    then
+        git config oh-my-zsh.x-lazy-dirty-status dirty
+    else
+        git config --unset oh-my-zsh.x-lazy-dirty-status
+    fi
+}
+
+
 if [ "$DISABLE_AUTO_TITLE" != "true" ]; then
-	#DISABLE_AUTO_TITLE=true
+    #DISABLE_AUTO_TITLE=true
 fi
 
 function precmd {
-	#if [ "$DISABLE_AUTO_TITLE" != "true" ]; then
-	if [[ "$TERM" == "linux" ]]; then
-		print -nR $'\033k'$(_gofish_collapsed_wd)$'\033'\\\
+    #if [ "$DISABLE_AUTO_TITLE" != "true" ]; then
+    if [[ "$TERM" == "linux" ]]; then
+        print -nR $'\033k'$(_gofish_collapsed_wd)$'\033'\\\
 
-		print -nR $'\33]0;'$(whoami)@$(_gofish_collapsed_host)$'\a'
-	fi
+        print -nR $'\33]0;'$(whoami)@$(_gofish_collapsed_host)$'\a'
+    fi
 }
 
 function preexec {
-	emulate -L zsh
-	local -a cmd; cmd=(${(z)1})
-	#if [ "$DISABLE_AUTO_TITLE" != "true" ]; then
-	if [[ "$TERM" == "linux" ]]; then
-		print -nR $'\033k'$cmd[1]:t$'\033'\\\
+    emulate -L zsh
+    local -a cmd; cmd=(${(z)1})
+    #if [ "$DISABLE_AUTO_TITLE" != "true" ]; then
+    if [[ "$TERM" == "linux" ]]; then
+        print -nR $'\033k'$cmd[1]:t$'\033'\\\
 
-		print -nR $'\33]0;'$cmd[2,-1]$'\a'
+        print -nR $'\33]0;'$cmd[2,-1]$'\a'
 
-		title $cmd[1]:t "$cmd[2,-1]"
-	fi
+        title $cmd[1]:t "$cmd[2,-1]"
+    fi
 }
+
 
 local user_color='green'; [ $UID -eq 0 ] && user_color='red'
 PROMPT='%n@$(_gofish_collapsed_host) %{$fg[$user_color]%}$(_gofish_collapsed_wd)%{$reset_color%}$(_gofish_git_info)%(!.#.>) '
 PROMPT2='%{$fg[red]%}\ %{$reset_color%}'
 
 local return_status="%{$fg_bold[red]%}%(?..%?)%{$reset_color%}"
-RPROMPT='${return_status}$(git_prompt_status)%{$reset_color%}'
+RPROMPT='${return_status}$(false && git_prompt_status)%{$reset_color%}'
 
 ZSH_THEME_GIT_PROMPT_PREFIX=" "
 ZSH_THEME_GIT_PROMPT_SUFFIX=")%{$reset_color%}"

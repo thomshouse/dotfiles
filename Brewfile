@@ -18,6 +18,7 @@ brew 'openssl'
 brew 'python'
 brew 'reattach-to-user-namespace' --with-wrap-pbcopy-and-pbpaste
 brew 'speedtest-cli'
+brew 'time'
 brew 'tmux'
 brew 'vim'
 brew 'wget'
