@@ -1,5 +1,5 @@
 # Reattach the whole session/window to user namespace
-set-option -g default-command "reattach-to-user-namespace -l zsh"
+set-option -g default-command "tmux rename-window '…' && reattach-to-user-namespace -l zsh"
 
 # Use backtick as escape
 unbind C-b
@@ -8,3 +8,17 @@ bind-key ` send-prefix
 
 # Start windows numbering at 1
 set -g base-index 1
+set -g status-bg colour235
+
+# tmux-powerline options
+set-option -g status on
+set-option -g status-interval 2
+set-option -g status-justify "left"
+set-option -g status-left-length 60
+set-option -g status-right-length 90
+set-option -g status-left "#(~/.tmux-powerline/powerline.sh left) "
+set-option -g status-right "#(~/.tmux-powerline/powerline.sh right) "
+set-window-option -g window-status-current-format "#[fg=colour235, bg=colour250] #I  #W #[fg=colour250, bg=colour235]"
+set-window-option -g window-status-format "#[fg=colour255, bg=colour235]  #I  #W  "
+
+# #I:#W#F

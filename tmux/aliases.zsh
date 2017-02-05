@@ -1,1 +1,1 @@
-alias subl='reattach-to-user-namespace subl'
+# alias subl='reattach-to-user-namespace subl'
