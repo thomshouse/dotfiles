@@ -12,7 +12,7 @@ brew 'ack'
 brew 'colordiff'
 brew 'coreutils'
 brew 'git'
-brew 'grc'
+#brew 'grc' # -- Removed because of issues with grc 1.10
 brew 'gnu-time'
 brew 'node'
 brew 'openssl'
