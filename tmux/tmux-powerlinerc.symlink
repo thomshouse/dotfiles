@@ -1,7 +1,4 @@
 # Default configuration file for tmux-powerline.
-# Modeline {
-#	 vi: foldmarker={,} foldmethod=marker foldlevel=0 tabstop=4 filetype=sh
-# }
 
 # General {
 	# Show which segment fails and its exit code.
@@ -14,6 +11,14 @@
 	export TMUX_POWERLINE_DIR_USER_THEMES=""
 	# Overlay directory to look for segments. There you can put your own segments outside the repo. Fallback will still be the "segments" directory in the repo.
 	export TMUX_POWERLINE_DIR_USER_SEGMENTS=""
+# }
+
+# Theme auto-switching by thomshouse {
+	if [[ $(tmux list-clients | grep -iE "(putty|mswin|ms-win|win7|win10|no-powerline)" | wc -l) -ne 0 ]]; then
+		export TMUX_POWERLINE_THEME="thomshouse-lofi"
+		tmux set-window-option -g window-status-current-format "#[fg=colour235, bg=colour250] #I: #W #[fg=colour250, bg=colour235] "
+		tmux set-window-option -g window-status-format "#[fg=colour255, bg=colour235] #I: #W  "
+	fi
 # }
 
 # battery.sh {
