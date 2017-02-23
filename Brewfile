@@ -24,8 +24,9 @@ brew 'vim'
 brew 'wget'
 
 # PHP
-brew 'php56'
-brew 'php56-mongodb'
+brew 'php70'
+brew 'php70-mongodb'
+brew 'php70-redis'
 
 # Note: do we also need readline?
 
