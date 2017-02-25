@@ -11,7 +11,6 @@
   hide = update-index --assume-unchanged
   unhide = update-index --no-assume-unchanged
   hidden = "!git ls-files -v | grep ^h | cut -c 3-"
-  npm-ignore = "![[ $(find ./node_modules/) ]] 2> /dev/null && echo '/*' > node_modules/.gitignore && echo '!/.gitignore' >> node_modules/.gitignore && npm ls --prod --parseable 2> /dev/null | grep node_modules | grep -vE 'node_modules.*node_modules' | sed 's/.*node_modules/!/' >> node_modules/.gitignore"
   purge = "!git branch --merged master | grep -E \"(issue-|feature-|release-)\" | cat"
   purge-confirm = "!git branch --merged master | grep -E \"(issue-|feature-|release-)\" | xargs -n 1 git branch -d"
   purge-remote = "!git branch -r --merged master | grep -E \"(issue-|feature-|release-)\" | cat"
