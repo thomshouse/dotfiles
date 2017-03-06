@@ -4,7 +4,7 @@
 [alias]
   staged = diff --staged
   ff = merge --ff-only
-  foff = "!git checkout $1 && git merge --ff-only HEAD@{1}"
+  ffon = "!git checkout $1 && git merge --ff-only HEAD@{1}"
   pf = pull --ff-only
   up = "!git remote update -p; git merge --ff-only @{u}"
   pushu = "!git push -u origin `git symbolic-ref --short HEAD`"
