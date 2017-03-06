@@ -13,7 +13,7 @@ brew 'colordiff'
 brew 'coreutils'
 brew 'git'
 #brew 'grc' # -- Removed because of issues with grc 1.10
-brew 'gnu-time'
+#brew 'gnu-time' # -- Removed because of install issues
 brew 'node'
 brew 'openssl'
 brew 'python'
@@ -38,7 +38,7 @@ brew 'spaceman-diff'
 cask 'atom'
 cask 'google-chrome'
 cask 'iterm2'
-cask 'mou'
+#cask 'mou' # -- Removed because of macOS incompatibility
 cask 'slack'
 cask 'sublime-text'
 cask 'virtualbox'
