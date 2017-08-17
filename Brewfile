@@ -14,7 +14,7 @@ brew 'coreutils'
 brew 'git'
 #brew 'grc' # -- Removed because of issues with grc 1.10
 #brew 'gnu-time' # -- Removed because of install issues
-brew 'node'
+#brew 'node' -- Removed in favor of nvm
 brew 'openssl'
 brew 'python'
 brew 'reattach-to-user-namespace', args: ['with-wrap-pbcopy-and-pbpaste']
@@ -27,6 +27,7 @@ brew 'wget'
 brew 'php70'
 brew 'php70-mongodb'
 brew 'php70-redis'
+brew 'php70-mcrypt'
 
 # Note: do we also need readline?
 

@@ -1,4 +1,9 @@
-#if test ! $(which spoof)
-#then
-#  sudo npm install spoof -g
-#fi
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.1/install.sh | bash
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+
+echo "$NVM_DIR"
+
+nvm install stable
+nvm alias default stable
