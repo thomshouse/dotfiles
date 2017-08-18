@@ -19,7 +19,9 @@ if ! zgen saved; then
   # specify plugins here
   zgen oh-my-zsh
   zgen oh-my-zsh plugins/gitfast
-  zgen oh-my-zsh plugins/tmux
+  if (( $+commands[tmux] )); then
+    zgen oh-my-zsh plugins/tmux
+  fi
   zgen oh-my-zsh plugins/ssh-agent
 
   # generate the init script from plugins above
