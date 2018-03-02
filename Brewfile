@@ -22,6 +22,7 @@ brew 'speedtest-cli'
 brew 'tmux'
 brew 'vim'
 brew 'wget'
+brew 'composer'
 
 # PHP
 brew 'php70'
