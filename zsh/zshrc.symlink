@@ -10,14 +10,6 @@ export PROJECTS=~/Code
 # Start the ssh-agent
 ssh-agent > /dev/null
 
-# Stash your environment variables in ~/.localrc. This means they'll stay out
-# of your main dotfiles repository (which may be public, like this one), but
-# you'll have access to them in your scripts.
-if [[ -a ~/.localrc ]]
-then
-  source ~/.localrc
-fi
-
 # all of our zsh files
 typeset -U config_files
 config_files=($ZSH/**/*.zsh)
@@ -48,3 +40,11 @@ unset config_files
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
+# Stash your environment variables in ~/.localrc. This means they'll stay out
+# of your main dotfiles repository (which may be public, like this one), but
+# you'll have access to them in your scripts.
+if [[ -a ~/.localrc ]]
+then
+  source ~/.localrc
+fi
