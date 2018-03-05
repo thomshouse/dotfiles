@@ -40,6 +40,10 @@ done
 
 export ZSH=$HOME/.dotfiles
 
+# Run unloaders
+echo "› $ZSH/script/unload"
+$ZSH/script/unload
+
 # Set macOS defaults
 echo "› Set defaults"
 $ZSH/macos/set-defaults.sh

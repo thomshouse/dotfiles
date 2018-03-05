@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# find unload scripts and run them iteratively
+find . -name unload.sh | while read unloader ; do sh -c "${unloader}; sudo -k;" ; done
