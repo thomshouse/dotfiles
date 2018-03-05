@@ -5,7 +5,10 @@ export DISABLE_LS_COLORS=true
 
 # autostart tmux if installed
 if (( $+commands[tmux] )); then
-  export ZSH_TMUX_AUTOSTART=true
+  tmux ls >/dev/null 2>&1;
+  if [ $? -eq 0 ]; then
+    export ZSH_TMUX_AUTOSTART=true
+  fi
 fi
 
 DOTHOME=$ZSH
