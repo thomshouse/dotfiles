@@ -25,10 +25,10 @@ brew 'wget'
 brew 'composer'
 
 # PHP
-brew 'php70'
-brew 'php70-mongodb'
-brew 'php70-redis'
-brew 'php70-mcrypt'
+brew 'php71', link: true
+brew 'php71-mongodb'
+brew 'php71-redis'
+brew 'php71-mcrypt'
 
 # Note: do we also need readline?
 
