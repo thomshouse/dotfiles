@@ -47,8 +47,13 @@ done
 
 unset config_files
 
+# Trick NVM into not adding snippet
+if [ 1 -eq 0 ]; then
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
+fi # End NVM Trick
 
 # Stash your environment variables in ~/.localrc. This means they'll stay out
 # of your main dotfiles repository (which may be public, like this one), but
