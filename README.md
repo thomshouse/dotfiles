@@ -1,11 +1,9 @@
 # thomshouse dotfiles
 
 Based on [holman's dotfiles](https://github.com/holman/dotfiles).
+Tweaked and tailored for my personal needs and desired.
 
-(Note: I am not going to put in extensive work on these dotfiles as I would
-like to move to an ansible-based system in the future.)
-
-# README from zholman:
+# README from zholman (mostly):
 
 Your dotfiles are how you personalize your system. These are mine.
 
@@ -47,6 +45,8 @@ There's a few special files in the hierarchy.
   expected to setup `$PATH` or similar.
 - **topic/completion.zsh**: Any file named `completion.zsh` is loaded
   last and is expected to setup autocomplete.
+- **topic/logout.zsh**: Any file named `logout.zsh` is loaded upon logout.
+  (**added by thomshouse**)
 - **topic/\*.symlink**: Any files ending in `*.symlink` get symlinked into
   your `$HOME`. This is so you can keep all of those versioned in your dotfiles
   but still keep those autoloaded files in your home directory. These get

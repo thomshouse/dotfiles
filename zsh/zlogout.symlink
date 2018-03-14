@@ -1,0 +1,16 @@
+# shortcut to this dotfiles path is $ZSH
+export ZSH=$HOME/.dotfiles
+
+# load the logout files
+for file in $ZSH/**/logout.zsh(.N)
+do
+  source $file
+done
+
+# Stash your local logout commands in ~/.local_logout. This means they'll stay
+# out of your main dotfiles repository (which may be public, like this one), but
+# you'll have access to them in your scripts.
+if [[ -a ~/.local_logout ]]
+then
+  source ~/.local_logout
+fi

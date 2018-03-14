@@ -20,8 +20,8 @@ do
   source $file
 done
 
-# load everything but the path and completion files
-for file in ${${config_files:#*/path.zsh}:#*/completion.zsh}
+# load everything but the path, completion, and logout files
+for file in ${${${config_files:#*/path.zsh}:#*/completion.zsh}:#*/logout.zsh}
 do
   source $file
 done
