@@ -1,6 +1,7 @@
 cask_args appdir: '/Applications'
 
 tap 'homebrew/bundle'
+tap 'puma/puma'
 
 # Needed for PHP
 tap 'homebrew/dupes'
