@@ -4,8 +4,6 @@ tap 'homebrew/bundle'
 tap 'puma/puma'
 
 # Needed for PHP
-tap 'homebrew/dupes'
-tap 'homebrew/versions'
 tap 'homebrew/php'
 
 brew 'ansible'
