@@ -3,9 +3,6 @@ cask_args appdir: '/Applications'
 tap 'homebrew/bundle'
 tap 'puma/puma'
 
-# Needed for PHP
-tap 'homebrew/php'
-
 brew 'ansible'
 brew 'ack'
 brew 'colordiff'
@@ -25,9 +22,6 @@ brew 'composer'
 
 # PHP
 brew 'php71', link: true
-brew 'php71-mongodb'
-brew 'php71-redis'
-brew 'php71-mcrypt'
 
 # Note: do we also need readline?
 
