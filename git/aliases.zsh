@@ -1,5 +1,5 @@
 git() {
-  if [ "$1" = top ]; then
+  if [ "$1" = root ]; then
     builtin cd `git rev-parse --show-toplevel`
   else
     command git "$@"
