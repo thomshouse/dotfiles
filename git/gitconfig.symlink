@@ -18,6 +18,7 @@
   testing-local = "!bash -c \"comm -12 <(git branch -r --no-merged origin/master) <(git branch -r --merged testing)\""
   tiny = log --pretty='format:%C(auto)%h  %C(auto,cyan)%<(12)%cr%Creset %C(auto,bold)%<(16)%cn%Creset %C(auto,dim)%<(50,trunc)%s %C(auto)%d'
   tree = log --pretty='format:%C(auto)%h  %C(auto,cyan)%<(12)%cr%Creset %C(auto,bold)%<(16)%cn%Creset %C(auto,dim)%<(50,trunc)%s %C(auto)%d' --graph
+  treemail = log --pretty='format:%C(auto)%h  %C(auto,cyan)%<(12)%cr%Creset %C(auto,bold)%<(16)%ce%Creset %C(auto,dim)%<(50,trunc)%s %C(auto)%d' --graph
 [core]
   excludesfile = ~/.gitignore
   editor = vim
