@@ -43,10 +43,16 @@ done
 
 if [ -z "$SKIP_UPDATE" ]; then
         echo "› Updating dotfiles"
+	OLDREV=$(git rev-parse HEAD)
 	cd $HOME/.dotfiles
 	git pull --ff-only
-	echo "› Running updated dotfiles"
-	sh bin/dot --skip-update
+	NEWREV=$(git rev-parse HEAD)
+	if [ "$OLDREV" == "$NEWREV" ]; then
+		sh bin/dot --skip-update
+	else
+		echo "› Running bootstrap of updated dotfiles"
+		sh script/bootstrap
+	fi
 	exit
 fi
 
