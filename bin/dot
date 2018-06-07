@@ -30,6 +30,9 @@ while test $# -gt 0; do
 			exec "$EDITOR" "$dotfilesDirectory"
 			exit
 			;;
+		"--skip-update")
+			SKIP_UPDATE=1
+			;;
 		*)
 			echo "Invalid option: $1"
 			displayUsageAndExit
@@ -37,6 +40,15 @@ while test $# -gt 0; do
 	esac
 	shift
 done
+
+if [ -z "$SKIP_UPDATE" ]; then
+        echo "› Updating dotfiles"
+	cd $HOME/.dotfiles
+	git pull --ff-only
+	echo "› Running updated dotfiles"
+	sh bin/dot --skip-update
+	exit
+fi
 
 export ZSH=$HOME/.dotfiles
 
