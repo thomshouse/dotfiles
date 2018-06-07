@@ -43,8 +43,8 @@ done
 
 if [ -z "$SKIP_UPDATE" ]; then
         echo "› Updating dotfiles"
-	OLDREV=$(git rev-parse HEAD)
 	cd $HOME/.dotfiles
+	OLDREV=$(git rev-parse HEAD)
 	git pull --ff-only
 	NEWREV=$(git rev-parse HEAD)
 	if [ "$OLDREV" == "$NEWREV" ]; then
