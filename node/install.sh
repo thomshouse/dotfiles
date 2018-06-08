@@ -1,3 +1,7 @@
+if ! [ -e "$HOME/.nvm" ]; then
+    NEW_NVM = 1;
+fi
+
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.1/install.sh | bash
 
 export NVM_DIR="$HOME/.nvm"
@@ -5,5 +9,13 @@ export NVM_DIR="$HOME/.nvm"
 
 echo "$NVM_DIR"
 
-nvm install stable
-nvm alias default stable
+if [ -z "$NEW_NVM" ]; then
+	nvm install --lts
+	nvm alias default 'lts/*'
+else
+	nvm use --lts
+	LTS_VERSION="$(nvm current)"
+	nvm install --lts
+	nvm reinstall-packages "$LTS_VERSION"
+	nvm use default
+fi
