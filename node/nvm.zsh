@@ -8,7 +8,7 @@ lazyload_nvm() {
 }
 
 lazyload_nvm_get_commands() {
-    find .nvm/versions/node -type d -name "bin" -maxdepth 2 | xargs -I {} ls -1 {} | cat | sort | uniq
+    find ~/.nvm/versions/node -type d -name "bin" -maxdepth 2 | xargs -I {} ls -1 {} | cat | sort | uniq
 }
 
 nvm() {
