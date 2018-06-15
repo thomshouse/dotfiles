@@ -23,5 +23,5 @@ fi
 
 # Attempt to use homebrew "keychain" utility for ssh-agent
 if [[ $+commands[keychain] && -e ~/.ssh/id_rsa ]]; then
-  eval `keychain --quiet --nogui --eval --agents ssh --inherit any id_rsa`;
+  eval `keychain --quiet --nogui --eval --agents ssh id_rsa`;
 fi
