@@ -9,9 +9,9 @@ echo "› sudo softwareupdate -i -a"
 sudo softwareupdate -i -a
 
 # Grab lunchy because launchctl is annoying
-
-if (( ! $+commands[lunchy] ))
+gem list -i "^lunchy$" > /dev/null 2>&1;
+if (( $? ))
 then
+  echo "› gem install lunchy"
   gem install lunchy
 fi
-
