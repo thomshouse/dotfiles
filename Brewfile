@@ -10,6 +10,7 @@ brew 'coreutils'
 brew 'git'
 #brew 'grc' # -- Removed because of issues with grc 1.10
 #brew 'gnu-time' # -- Removed because of install issues
+brew 'keychain'
 #brew 'node' -- Removed in favor of nvm
 brew 'openssl'
 brew 'python'
