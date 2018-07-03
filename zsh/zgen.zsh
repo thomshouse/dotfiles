@@ -20,7 +20,7 @@ source "${DOTHOME}/zsh/gofish.zsh-theme"
 if ! zgen saved; then
 
   # specify plugins here
-  zgen oh-my-zsh
+  #zgen oh-my-zsh # OMZ loads some intrusive aliases -- skip core
   zgen oh-my-zsh plugins/gitfast
   if (( $+commands[tmux] )); then
     zgen oh-my-zsh plugins/tmux

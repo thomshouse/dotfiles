@@ -17,15 +17,15 @@ do
   source $file
 done
 
+# initialize autocomplete here, otherwise functions won't be loaded
+autoload -U compinit
+compinit
+
 # load everything but the path, completion, and logout files
 for file in ${${${config_files:#*/path.zsh}:#*/completion.zsh}:#*/logout.zsh}
 do
   source $file
 done
-
-# initialize autocomplete here, otherwise functions won't be loaded
-autoload -U compinit
-compinit
 
 # Better history
 # Credits to https://coderwall.com/p/jpj_6q/zsh-better-history-searching-with-arrow-keys
