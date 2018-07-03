@@ -14,7 +14,6 @@ fi
 DOTHOME=$ZSH
 
 source "${HOME}/.zgen/zgen.zsh"
-source "${DOTHOME}/zsh/gofish.zsh-theme"
 
 # if the init scipt doesn't exist
 if ! zgen saved; then
@@ -29,5 +28,7 @@ if ! zgen saved; then
   # generate the init script from plugins above
   zgen save
 fi
+
+source "${DOTHOME}/zsh/gofish.zsh-theme"
 
 ZSH=$DOTHOME
