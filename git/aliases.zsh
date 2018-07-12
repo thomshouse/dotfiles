@@ -1,7 +1,23 @@
+#!/bin/zsh
+
 git() {
   if [ "$1" = root ]; then
     builtin cd `git rev-parse --show-toplevel`
   else
+    ISALIAS=$(command git --no-pager config --get-regexp "^alias\.$1\$");
+    if [ -n "$ISALIAS" ]; then
+	    ALIASARGS="";
+	    for i in "${@:2}"; do
+              ALIASARGS="$ALIASARGS $i";
+	    done
+	    ALIASOF="$(command git config alias.$1)";
+	    if [[ "$ALIASOF" =~ "^!" ]]; then
+	      ALIASOF="${ALIASOF#!}";
+	    else
+	      ALIASOF="git $ALIASOF";
+	    fi;
+	    dotfiles_git_format_command "$ALIASOF$ALIASARGS";
+    fi
     command git "$@"
   fi
 }

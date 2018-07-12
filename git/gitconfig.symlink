@@ -2,6 +2,7 @@
 [include]
   path = ~/.gitconfig.local
 [alias]
+  alias = "!git --no-pager config --get-regexp \"^alias\""
   staged = diff --staged
   ff = merge --ff-only
   ffon = "!git checkout $1 && git merge --ff-only HEAD@{1}"
