@@ -39,7 +39,7 @@ dotfiles_git_format_command() {
 }
 
 # Aliases to git commands
-alias g="dotfiles_git_verbalize git"
+alias g="git"
 alias ga="dotfiles_git_verbalize git add"
 alias gb="dotfiles_git_verbalize git branch"
 alias gcb="git checkout -b"
