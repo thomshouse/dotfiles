@@ -7,7 +7,7 @@
   ffon = "!git checkout $1 && git merge --ff-only HEAD@{1}"
   pf = pull --ff-only
   up = "!git remote update -p; git merge --ff-only @{u}"
-  pushu = "!git push -u origin `git symbolic-ref --short HEAD`"
+  pushu = "!GIT_DEFAULT_BRANCHNAME=origin && zsh -c \"git push -u \"${1-$GIT_DEFAULT_BRANCHNAME}\" `git symbolic-ref --short HEAD`\""
   hide = update-index --assume-unchanged
   unhide = update-index --no-assume-unchanged
   hidden = "!git ls-files -v | grep ^h | cut -c 3-"
