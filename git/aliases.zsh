@@ -55,5 +55,5 @@ alias gs="dotfiles_git_verbalize git status"
 alias gup="dotfiles_git_verbalize git remote update -p; dotfiles_git_verbalize git merge --ff-only @{u}"
 
 # Aliases to git aliases -- due to structure of commands
-alias gffon="dotfiles_git_format_command \"git checkout <branch> && git merge --ff-only HEAD@{1} (last-branch)\"; git ffon"
-alias {gpu,gpushu}="dotfiles_git_verbalize git pushu"
+alias gffon="git ffon"
+alias {gpu,gpushu}="git pushu"
