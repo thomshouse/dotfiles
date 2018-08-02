@@ -154,3 +154,8 @@ fi
 
 echo ''
 echo '  All installed!'
+
+if [[ -f "$(which zsh)" ]] && ! [[ "$SHELL" =~ "zsh" ]]; then
+  echo ''
+  echo 'To ensure your dotfiles load properly, you may want to close all terminal windows at this time.'
+fi

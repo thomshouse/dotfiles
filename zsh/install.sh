@@ -4,17 +4,22 @@
 #
 # Commands to run during installation 
 
-# TODO: If we have ZSH, let there be ZSH
-#if (( $+commands[zsh] && ! $+ZSH_NAME ))
-#then
-  #chsh -s $(which zsh)
-#fi
+# Set ZSH as default shell (assuming current shell is default shell)
+if [[ -f "$(which zsh)" ]] && ! [[ "$SHELL" =~ "zsh" ]]
+then
+  sudo -k
+  echo "";
+  chsh -s $(which zsh)
+  echo "";
+fi
 
+# Install zgen (includes oh-my-zsh)
 if [[ ! -e "$HOME/.zgen" ]]
 then
   git clone https://github.com/tarjoilija/zgen.git "$HOME/.zgen"
 fi
 
+# Override zgen directory aliases
 if [[ -e "$HOME/.zgen/robbyrussell/oh-my-zsh-master/custom/" ]]
 then
   mkdir -p "$HOME/.zgen/robbyrussell/oh-my-zsh-master/custom/lib"
