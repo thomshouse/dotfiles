@@ -1,6 +1,10 @@
 #!/bin/zsh
 
-source "$HOME/.zgen/zgen.zsh"
+if [ -f "$HOME/.zgen/zgen.zsh" ]; then
+  source "$HOME/.zgen/zgen.zsh"
+fi
 
-zgen update
-zgen selfupdate
+if (( $+commands[zgen] )); then
+  zgen update
+  zgen selfupdate
+fi
