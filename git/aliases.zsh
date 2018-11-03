@@ -16,7 +16,7 @@ git() {
 	    else
 	      ALIASOF="git $ALIASOF";
 	    fi;
-	    dotfiles_git_format_command "$ALIASOF$ALIASARGS";
+	    dotfiles_git_verbalize "$ALIASOF$ALIASARGS";
     fi
     command git "$@"
   fi
@@ -29,30 +29,24 @@ unalias g ga gaa gapa gau gap gb gba gbd gbda gbl gbnm gbr gbs gbsb gbsg gbsr gb
 unfunction gdv gfg ggf ggfl ggl ggp ggpnp ggu >/dev/null 2>&1
 
 dotfiles_git_verbalize() {
-  params="$@";
-  dotfiles_git_format_command $@;
-  eval "$params";
-}
-
-dotfiles_git_format_command() {
   echo "  \$ \e[1m\e[97m$@\e[0m";
 }
 
 # Aliases to git commands
 alias g="git"
-alias ga="dotfiles_git_verbalize git add"
-alias gb="dotfiles_git_verbalize git branch"
-alias gcb="git checkout -b"
-alias gch="dotfiles_git_verbalize git checkout"
-alias gcm="dotfiles_git_verbalize git commit"
-alias gd="dotfiles_git_verbalize git diff"
-alias gf="dotfiles_git_verbalize git fetch"
-alias gff="dotfiles_git_verbalize git merge --ff-only"
-alias gm="dotfiles_git_verbalize git merge"
-alias gp="dotfiles_git_verbalize git push"
-alias gr="dotfiles_git_verbalize git remote"
-alias gs="dotfiles_git_verbalize git status"
-alias gup="dotfiles_git_verbalize git remote update -p; dotfiles_git_verbalize git merge --ff-only @{u}"
+alias ga="dotfiles_git_verbalize git add && git add"
+alias gb="dotfiles_git_verbalize git branch && git branch"
+alias gcb="dotfiles_git_verbalize git checkout -b && git checkout -b"
+alias gch="dotfiles_git_verbalize git checkout && git checkout"
+alias gcm="dotfiles_git_verbalize git commit && git commit"
+alias gd="dotfiles_git_verbalize git diff && git diff"
+alias gf="dotfiles_git_verbalize git fetch && git fetch"
+alias gff="dotfiles_git_verbalize git merge --ff-only && git merge --ff-only"
+alias gm="dotfiles_git_verbalize git merge && git merge"
+alias gp="dotfiles_git_verbalize git push && git push"
+alias gr="dotfiles_git_verbalize git remote && git remote"
+alias gs="dotfiles_git_verbalize git status && git status"
+alias gup="dotfiles_git_verbalize git remote update -p && git remote update -p; dotfiles_git_verbalize git merge --ff-only @{u} && git merge --ff-only @{u}"
 
 # Aliases to git aliases -- due to structure of commands
 alias gffon="git ffon"
