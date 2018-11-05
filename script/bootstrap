@@ -31,9 +31,12 @@ setup_gitconfig () {
   # Account for converting legacy config (+local vs +dotfiles)
   if [ -f git/gitconfig.local.symlink ]
   then
+    rm git/gitconfig.local.symlink ~/.gitconfig.local
+  fi
+  if [ -f git/gitconfig.symlink ]
+  then
     sed -e "s/\(path = ~\/.gitconfig.dotfiles\)/#\1/g" git/gitconfig.symlink > git/gitconfig.dotfiles.symlink
     rm git/gitconfig.symlink ~/.gitconfig
-    rm git/gitconfig.local.symlink ~/.gitconfig.local
   fi
 
   # Create gitconfig
