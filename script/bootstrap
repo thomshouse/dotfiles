@@ -5,6 +5,9 @@
 cd "$(dirname "$0")/.."
 DOTFILES_ROOT=$(pwd -P)
 
+# Add bootstrap flag before starting install
+touch .bootstrap
+
 set -e
 
 echo ''
@@ -152,6 +155,9 @@ install_dotfiles () {
 
 setup_gitconfig
 install_dotfiles
+
+# Remove .bootstrap flag after bootstrap phase of install (before bin/dot)
+rm .bootstrap
 
 # If we're on a Mac, let's install and setup homebrew.
 if [ "$(uname -s)" == "Darwin" ]

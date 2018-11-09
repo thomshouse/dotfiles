@@ -56,6 +56,13 @@ if [ -z "$SKIP_UPDATE" ]; then
 	exit
 fi
 
+if [ -f $HOME/.dotfiles/.bootstrap ]; then
+	echo "› WARNING: Previous dotfiles installation did not complete"
+	echo "› Re-running bootstrap process..."
+	sh script/bootstrap
+	exit
+fi
+
 export ZSH=$HOME/.dotfiles
 
 # Run unloaders
