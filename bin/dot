@@ -21,6 +21,8 @@ displayUsageAndExit() {
 	exit
 }
 
+sudo true;
+
 while test $# -gt 0; do
 	case "$1" in
 		"-h"|"--help")
@@ -42,7 +44,7 @@ while test $# -gt 0; do
 done
 
 if [ -z "$SKIP_UPDATE" ]; then
-        echo "› Updating dotfiles"
+	echo "› Updating dotfiles"
 	cd $HOME/.dotfiles
 	OLDREV=$(git rev-parse HEAD)
 	git pull --ff-only
@@ -72,7 +74,6 @@ $ZSH/script/unload
 # Set macOS defaults
 echo "› Set defaults"
 $ZSH/macos/set-defaults.sh
-sudo -k
 
 # Install homebrew
 echo "› Install homebrew"
@@ -81,7 +82,6 @@ $ZSH/homebrew/install.sh
 # Upgrade homebrew
 echo "› brew update"
 brew update
-sudo -k
 
 # Install software
 echo "› $ZSH/script/install"

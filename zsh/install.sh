@@ -7,7 +7,6 @@
 # Set ZSH as default shell (assuming current shell is default shell)
 if [[ -f "$(which zsh)" ]] && ! [[ "$SHELL" =~ "zsh" ]]
 then
-  sudo -k
   echo "";
   chsh -s $(which zsh)
   echo "";
