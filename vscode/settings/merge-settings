@@ -1,0 +1,43 @@
+#!/usr/bin/env node
+
+fs = require("fs");
+path = require("path");
+
+var localFilename = path.join(
+    process.env.HOME,
+    'Library',
+    'Application Support',
+    'Code',
+    'User',
+    'settings.json'
+);
+
+var defaultSettings, localSettings, overrideSettings;
+
+try {
+    defaultSettings = JSON.parse(fs.readFileSync('defaults.json'));
+} catch (e) {
+    defaultSettings = {};
+}
+
+try {
+    localSettings = JSON.parse(fs.readFileSync(localFilename));
+} catch (e) {
+    localSettings = {};
+}
+
+try {
+    overrideSettings = JSON.parse(fs.readFileSync('settings.json'));
+} catch (e) {
+    overrideSettings = {};
+}
+
+var newSettings = {};
+var queue = [defaultSettings, localSettings, overrideSettings];
+for (var i in queue) {
+    for (var attr in queue[i]) {
+        newSettings[attr] = queue[i][attr];
+    }
+}
+
+fs.writeFileSync(localFilename, JSON.stringify(newSettings, null, 2));
