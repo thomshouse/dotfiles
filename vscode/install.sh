@@ -25,5 +25,5 @@ if (( $+commands[code] )); then
     done
 
     # User Node script to merge settings
-    ./settings/merge-settings
+    $(dirname $0:A)/settings/merge-settings
 fi

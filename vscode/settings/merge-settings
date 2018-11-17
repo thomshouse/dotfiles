@@ -15,7 +15,7 @@ var localFilename = path.join(
 var defaultSettings, localSettings, overrideSettings;
 
 try {
-    defaultSettings = JSON.parse(fs.readFileSync('defaults.json'));
+    defaultSettings = JSON.parse(fs.readFileSync(path.join(__dirname, 'defaults.json')));
 } catch (e) {
     defaultSettings = {};
 }
@@ -27,7 +27,7 @@ try {
 }
 
 try {
-    overrideSettings = JSON.parse(fs.readFileSync('settings.json'));
+    overrideSettings = JSON.parse(fs.readFileSync(path.join(__dirname,'settings.json')));
 } catch (e) {
     overrideSettings = {};
 }
