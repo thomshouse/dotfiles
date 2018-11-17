@@ -4,6 +4,11 @@
 if (( $+commands[code] )); then
     # List Extensions to Install
     extensions=(
+        #PHP
+        'bmewburn.vscode-intelephense-client'
+        'ikappas.phpcs'
+        'kokororin.vscode-phpfmt'
+        'phproberto.vscode-php-getters-setters'
     )
     # List Extensions to Uninstall
     uninstall_extensions=(
