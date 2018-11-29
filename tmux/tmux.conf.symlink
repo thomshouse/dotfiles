@@ -10,6 +10,10 @@ bind-key ` send-prefix
 set -g base-index 1
 set -g status-bg colour235
 
+# Remove preview from choose-client
+unbind-key -T prefix D
+bind-key   -T prefix D choose-client -NZ
+
 # tmux-powerline options
 set-option -g status on
 set-option -g status-interval 2
