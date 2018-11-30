@@ -89,7 +89,7 @@ if [ "$DISABLE_AUTO_TITLE" != "true" ]; then
 fi
 
 function precmd {
-    tmux rename-window "$(_gofish_collapsed_wd)"
+    tmux rename-window -t "${TMUX_WINDOW_ID:-$(tmux display-message -p '#I')}" "$(_gofish_collapsed_wd)"
     #if [ "$DISABLE_AUTO_TITLE" != "true" ]; then
     if [[ "$TERM" == "linux" ]]; then
         print -nR $'\033k'$(_gofish_collapsed_wd)$'\033'\\\
@@ -99,6 +99,7 @@ function precmd {
 }
 
 function preexec {
+    export TMUX_WINDOW_ID="$(tmux display-message -p '#I')";
     emulate -L zsh
     local -a cmd; cmd=(${(z)1})
     if [[ "$cmd[1]" == "ssh" ]]; then

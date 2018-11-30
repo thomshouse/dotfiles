@@ -6,8 +6,9 @@ unbind C-b
 set -g prefix `
 bind-key ` send-prefix
 
-# Start windows numbering at 1
+# Start windows numbering at 1 and auto-renumber
 set -g base-index 1
+set -g renumber-windows on
 set -g status-bg colour235
 
 # Remove preview from choose-client
@@ -16,7 +17,7 @@ bind-key   -T prefix D choose-client -NZ
 
 # tmux-powerline options
 set-option -g status on
-set-option -g status-interval 2
+set-option -g status-interval 1
 set-option -g status-justify "left"
 set-option -g status-left-length 60
 set-option -g status-right-length 90
