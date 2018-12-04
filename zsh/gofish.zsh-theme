@@ -89,7 +89,9 @@ if [ "$DISABLE_AUTO_TITLE" != "true" ]; then
 fi
 
 function precmd {
-    tmux rename-window -t "${TMUX_WINDOW_ID:-$(tmux display-message -p '#I')}" "$(_gofish_collapsed_wd)"
+    if (( $+commands[tmux] )); then
+        tmux rename-window -t "${TMUX_WINDOW_ID:-$(tmux display-message -p '#I')}" "$(_gofish_collapsed_wd)"
+    fi
     #if [ "$DISABLE_AUTO_TITLE" != "true" ]; then
     if [[ "$TERM" == "linux" ]]; then
         print -nR $'\033k'$(_gofish_collapsed_wd)$'\033'\\\
@@ -99,16 +101,18 @@ function precmd {
 }
 
 function preexec {
-    export TMUX_WINDOW_ID="$(tmux display-message -p '#I')";
     emulate -L zsh
     local -a cmd; cmd=(${(z)1})
-    if [[ "$cmd[1]" == "ssh" ]]; then
-        local -a host; host=(${(s/./)cmd[-1]})
-        tmux rename-window "$cmd[1] $host[1].$host[2]"
-    elif [[ "$cmd[1]" == "sudo" ]]; then
-        tmux rename-window "$cmd[1] $cmd[2]"
-    elif ! [[ "$cmd[1]" =~ '^(cd)$' ]]; then
-        tmux rename-window "$cmd[1]"
+    if (( $+commands[tmux] )); then
+        export TMUX_WINDOW_ID="$(tmux display-message -p '#I')";
+        if [[ "$cmd[1]" == "ssh" ]]; then
+            local -a host; host=(${(s/./)cmd[-1]})
+            tmux rename-window "$cmd[1] $host[1].$host[2]"
+        elif [[ "$cmd[1]" == "sudo" ]]; then
+            tmux rename-window "$cmd[1] $cmd[2]"
+        elif ! [[ "$cmd[1]" =~ '^(cd)$' ]]; then
+            tmux rename-window "$cmd[1]"
+        fi
     fi
     #if [ "$DISABLE_AUTO_TITLE" != "true" ]; then
     if [[ "$TERM" == "linux" ]]; then
