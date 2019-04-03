@@ -1,5 +1,6 @@
 cask_args appdir: '/Applications'
 
+untap 'homebrew/dupes'
 tap 'homebrew/bundle'
 tap 'puma/puma'
 
