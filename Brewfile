@@ -21,7 +21,7 @@ brew 'wget'
 brew 'composer'
 
 # PHP
-brew 'php71', link: true
+brew 'php72', link: true
 
 # Note: do we also need readline?
 
